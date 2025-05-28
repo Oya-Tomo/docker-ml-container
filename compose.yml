@@ -1,0 +1,18 @@
+services:
+  train:
+    container_name: "train"
+    build: .
+    tty: true
+    volumes:
+      - ./:/workspace
+      - venv:/workspace/.venv
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [utility, compute, video]
+
+volumes:
+  venv:
+    driver: "local"
