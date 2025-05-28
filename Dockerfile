@@ -28,9 +28,6 @@ RUN sh /uv-installer.sh && rm /uv-installer.sh
 ENV PATH="/root/.local/bin/:$PATH"
 
 # Sync the project
-ADD . /workspace
 WORKDIR /workspace
 
-RUN uv sync --locked
-
-CMD ["uv", "run", "src/train.py"]
+CMD ["uv", "sync", "--locked", "&&", "uv", "run", "src/train.py"]
