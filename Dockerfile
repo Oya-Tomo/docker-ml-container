@@ -29,5 +29,6 @@ ENV PATH="/root/.local/bin/:$PATH"
 
 # Sync the project
 WORKDIR /workspace
+RUN git config --global --add safe.directory /workspace
 
-CMD ["uv", "sync", "--locked", "&&", "uv", "run", "src/train.py"]
+CMD ["sh", "-c", "uv sync --locked && uv run src/train.py"]
